@@ -2,14 +2,14 @@
   "features": [
     {
       "name": "cli",
-      "enabled": "{{ cookiecutter.include_cli == 'yes' }}",
+      "enabled": {{ (cookiecutter.include_cli == 'yes')|lower }},
       "resources": [
         "./{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}/cli"
       ]
     },
     {
       "name": "type_checking",
-      "enabled": "{{ cookiecutter.include_type_checking == 'yes' }}",
+      "enabled": {{ (cookiecutter.include_type_checking == 'yes')|lower }},
       "resources": [
         "./mypy.ini"
       ]
