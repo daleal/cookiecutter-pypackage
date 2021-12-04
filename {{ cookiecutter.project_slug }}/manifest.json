@@ -1,0 +1,18 @@
+{
+  "features": [
+    {
+      "name": "cli",
+      "enabled": "{{ cookiecutter.include_cli == 'yes' }}",
+      "resources": [
+        "./{{ cookiecutter.project_slug }}/cli"
+      ]
+    },
+    {
+      "name": "type_checking",
+      "enabled": "{{ cookiecutter.include_type_checking == 'yes' }}",
+      "resources": [
+        "./mypy.ini"
+      ]
+    }
+  ]
+}

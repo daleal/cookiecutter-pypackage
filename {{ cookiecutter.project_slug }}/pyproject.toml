@@ -21,7 +21,7 @@ exclude = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
