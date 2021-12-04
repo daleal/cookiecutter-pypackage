@@ -21,7 +21,7 @@ SCRIPTS=$(cd $(dirname $0) && pwd)
 BASEDIR=$(dirname $SCRIPTS)
 
 # Get the version file
-VERSION_FILE="$BASEDIR/{{ cookiecutter.project_slug }}/version.py"
+VERSION_FILE="$BASEDIR/{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}/version.py"
 
 # Get substitution strings
 OLD_VERSION_SUBSTITUTION=$(echo $OLD_VERSION | sed "s/\./, /g")
@@ -31,6 +31,6 @@ NEW_VERSION_SUBSTITUTION=$(echo $NEW_VERSION | sed "s/\./, /g")
 sed -i.tmp "s#$OLD_VERSION_SUBSTITUTION#$NEW_VERSION_SUBSTITUTION#g" $VERSION_FILE && rm $VERSION_FILE.tmp
 
 # Commit changes into release branch
-git add $BASEDIR/pyproject.toml $BASEDIR/{{ cookiecutter.project_slug }}/version.py &&
+git add $BASEDIR/pyproject.toml $BASEDIR/{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}/version.py &&
 git checkout -b release/prepare-$NEW_VERSION &&
 git commit --message "pre-release: prepare $NEW_VERSION release"

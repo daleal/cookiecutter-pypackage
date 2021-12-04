@@ -9,7 +9,7 @@ on:
     paths:
       - ".github/workflows/tests.yml"
       - "Makefile"
-      - "{{ cookiecutter.project_slug }}/**/*.py"
+      - "{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}/**/*.py"
       - "tests/**/*.py"
 
 jobs:

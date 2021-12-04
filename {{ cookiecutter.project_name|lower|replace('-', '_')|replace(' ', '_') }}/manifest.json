@@ -4,7 +4,7 @@
       "name": "cli",
       "enabled": "{{ cookiecutter.include_cli == 'yes' }}",
       "resources": [
-        "./{{ cookiecutter.project_slug }}/cli"
+        "./{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}/cli"
       ]
     },
     {
