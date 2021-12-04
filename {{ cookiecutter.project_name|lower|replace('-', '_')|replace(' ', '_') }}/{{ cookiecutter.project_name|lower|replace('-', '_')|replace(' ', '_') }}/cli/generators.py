@@ -1,26 +1,17 @@
 """
-A module to hold the zum CLI parser generators.
+A module to hold the CLI parser generators.
 """
 
-{% if cookiecutter.include_type_checking == "yes" -%}
-
-from argparse import ArgumentParser, _SubParsersAction
-
-{% endif -%}
+from argparse import ArgumentParser {%- if cookiecutter.include_type_checking == "yes" %}, _SubParsersAction{% endif %}
 
 import {{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}
 from {{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}.cli.utils import setup_subparser_arguments
 
-{% if cookiecutter.include_type_checking == "yes" -%}
-
+{% if cookiecutter.include_type_checking == "yes" %}
 def generate_main_parser() -> ArgumentParser:
-
-{%- else -%}
-
+{%- else %}
 def generate_main_parser():
-
-{%- endif -%}
-
+{%- endif %}
     """Generates the main parser."""
     # Create parser
     parser = ArgumentParser(
@@ -32,7 +23,7 @@ def generate_main_parser():
         "-v",
         "--version",
         action="version",
-        version=f"{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }} version {{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}.__version__}",
+        version=f"{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }} version {% raw %}{{% endraw %}{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}.__version__{% raw %}}{% endraw %}",
     )
 
     # In order to allow the CLI utility grow, the parser will include an
@@ -49,33 +40,21 @@ def generate_main_parser():
 
     return parser
 
-
-{% if cookiecutter.include_type_checking == "yes" -%}
-
+{% if cookiecutter.include_type_checking == "yes" %}
 def generate_echo_subparser(subparsers: _SubParsersAction) -> ArgumentParser:
-
-{%- else -%}
-
+{%- else %}
 def generate_echo_subparser(subparsers):
-
-{%- endif -%}
-
+{%- endif %}
     """Generates the subparser for the echo option."""
     subparser = subparsers.add_parser("echo")
     subparser.set_defaults(action="echo")
     return setup_subparser_arguments(subparser)
 
-
-{% if cookiecutter.include_type_checking == "yes" -%}
-
+{% if cookiecutter.include_type_checking == "yes" %}
 def generate_hash_subparser(subparsers: _SubParsersAction) -> ArgumentParser:
-
-{%- else -%}
-
+{%- else %}
 def generate_hash_subparser(subparsers):
-
-{%- endif -%}
-
+{%- endif %}
     """Generates the subparser for the hash option."""
     subparser = subparsers.add_parser("hash")
     subparser.set_defaults(action="hash")

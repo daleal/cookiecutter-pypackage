@@ -1,19 +1,16 @@
-{% if cookiecutter.include_type_checking == "yes" -%}
-
+"""
+A module to hold the CLI utilities of the
+{{ cookiecutter.project_name }} package.
+"""
+{% if cookiecutter.include_type_checking == "yes" %}
 from argparse import ArgumentParser
-
-{%- endif -%}
-
+{% endif %}
 
 {% if cookiecutter.include_type_checking == "yes" -%}
-
 def setup_subparser_arguments(parser: ArgumentParser) -> ArgumentParser:
-
-{%- else -%}
-
+{% else -%}
 def setup_subparser_arguments(parser):
-
-{%- endif -%}
+{%- endif %}
     """
     Setup the arguments for any of the subparsers (both subparsers
     use the same arguments on this reduced example).

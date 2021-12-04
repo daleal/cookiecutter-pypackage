@@ -30,11 +30,8 @@ isort = "^5.6.4"
 pylint = "^2.6.0"
 pytest = "^6.1.1"
 pytest-cov = "^2.10.1"
-
-{%- if cookiecutter.include_type_checking == "yes" -%}
-
+{% if cookiecutter.include_type_checking == "yes" -%}
 mypy = "^0.790"
-
 {%- endif %}
 
 {% if cookiecutter.include_cli == "yes" -%}
