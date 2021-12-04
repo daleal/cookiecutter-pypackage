@@ -1,8 +1,4 @@
 # Env stuff
-.PHONY: get-poetry!
-get-poetry!:
-	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 - --version 1.1.12
-
 .PHONY: build-env
 build-env:
 	python3 -m venv .venv
