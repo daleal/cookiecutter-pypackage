@@ -3,13 +3,26 @@ A module to route the {{ cookiecutter.project_name }} package CLI traffic.
 """
 
 import sys
+
+{%- if cookiecutter.include_type_checking == "yes" -%}
+
 from typing import Any
+
+{%- endif %}
 
 from {{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }} import ExampleEngine
 from {{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}.cli.generators import generate_main_parser
 
+{% if cookiecutter.include_type_checking == "yes" -%}
 
 def dispatcher(*args: Any, **kwargs: Any) -> None:
+
+{%- else -%}
+
+def dispatcher(*args, **kwargs):
+
+{%- endif -%}
+
     """
     Main CLI method, recieves the command line action and dispatches it to
     the corresponding method.
