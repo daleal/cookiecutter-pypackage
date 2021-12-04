@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache@v2
         id: poetry-cache
         with:
-          key: poetry-cache-${{ {{ hashFiles('**/poetry.lock') }} }}
+          key: {% raw %}poetry-cache-${{ hashFiles('**/poetry.lock') }}{% endraw %}
           path: .venv
 
       - name: Install dependencies
@@ -40,7 +40,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          password: {% raw %}${{ secrets.PYPI_API_TOKEN }}{% endraw %}
 
   github-release:
     needs: pypi-release
@@ -64,7 +64,7 @@ jobs:
         uses: actions/cache@v2
         id: poetry-cache
         with:
-          key: poetry-cache-${{ {{ hashFiles('**/poetry.lock') }} }}
+          key: {% raw %}poetry-cache-${{ hashFiles('**/poetry.lock') }}{% endraw %}
           path: .venv
 
       - name: Install dependencies
@@ -84,9 +84,9 @@ jobs:
       - name: Tag and Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.version.outputs.version }}
-          name: ${{ steps.version.outputs.version }}
+          tag_name: {% raw %}${{ steps.version.outputs.version }}{% endraw %}
+          name: {% raw %}${{ steps.version.outputs.version }}{% endraw %}
           body: |
-            ${{ steps.find-pr.outputs.body }}
+            {% raw %}${{ steps.find-pr.outputs.body }}{% endraw %}
           draft: false
           prerelease: false

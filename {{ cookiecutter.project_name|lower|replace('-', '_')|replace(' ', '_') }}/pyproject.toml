@@ -30,13 +30,16 @@ isort = "^5.6.4"
 pylint = "^2.6.0"
 pytest = "^6.1.1"
 pytest-cov = "^2.10.1"
-{% if cookiecutter.include_type_checking == "yes" %}
-mypy = "^0.790"
-{% endif +%}
 
-{%+ if cookiecutter.include_cli == "yes" -%}
+{%- if cookiecutter.include_type_checking == "yes" -%}
+
+mypy = "^0.790"
+
+{%- endif %}
+
+{% if cookiecutter.include_cli == "yes" -%}
 
 [tool.poetry.plugins."console_scripts"]
 {{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }} = "{{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}.cli.core:dispatcher"
 
-{%- endif +%}
+{%- endif %}

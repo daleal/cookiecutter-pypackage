@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v2
         id: poetry-cache
         with:
-          key: poetry-cache-${{ {{ hashFiles('**/poetry.lock') }} }}
+          key: {% raw %}poetry-cache-${{ hashFiles('**/poetry.lock') }}{% endraw %}
           path: .venv
 
       - name: Install dependencies

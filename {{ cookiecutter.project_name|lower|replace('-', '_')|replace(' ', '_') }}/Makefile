@@ -31,11 +31,13 @@ isort:
 pylint:
 	poetry run pylint {{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}
 
-{%+ if cookiecutter.include_type_checking == "yes" %}
+{% if cookiecutter.include_type_checking == "yes" -%}
+
 .PHONY: mypy
 mypy:
 	poetry run mypy {{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }} tests
-{% endif +%}
+
+{%- endif %}
 
 # Aggresive linters
 .PHONY: black!
