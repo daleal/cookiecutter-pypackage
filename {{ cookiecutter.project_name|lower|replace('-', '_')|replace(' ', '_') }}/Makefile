@@ -49,6 +49,11 @@ isort!:
 bump!:
 	sh scripts/bump.sh $(filter-out $@,$(MAKECMDGOALS))
 
+.PHONY: publish!
+publish!:
+	poetry build
+	poetry publish
+
 # Receive args (use like `$(filter-out $@,$(MAKECMDGOALS))`)
 %:
 	@:

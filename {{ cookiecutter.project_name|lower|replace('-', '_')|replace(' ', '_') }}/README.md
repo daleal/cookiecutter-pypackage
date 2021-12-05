@@ -6,9 +6,19 @@ Welcome! If you're reading this it means that you just started your ✨ _shiny_ 
 
 Once the project has been created, two branches should exist: `{{ cookiecutter.git_main_branch }}` and `stable`. The first thing that you need to do is to create a repository on GitHub and _push_ both branches of this project to that repository. It is important that you push **both branches** and not only `{{ cookiecutter.git_main_branch }}`, as both will need to be used later on the process.
 
-After your package has been uploaded to GitHub, create an API token for your PyPi account and add it as a GitHub secret to a `PYPI_API_TOKEN` named secret. This will allow GitHub to make _releases_ to PyPi.
+After your package has been uploaded to GitHub, you need to create a first version of your package on PyPi (the place where Python packages are stored). Notice that next releases to PyPi will happen _automagically_. Make sure you have a PyPi account and, on the root of your package, execute the following commands:
 
-Now that you've created you're project, uploaded it to GitHub and added a PyPi API token, let's move out attention to your local machine. Notice that there is a `.venv` folder on the root of the repository. This corresponds to the virtualenv that has your project's dependencies. To use the virtualenv, you can prepend every command with `poetry run`. Poetry will make sure to use the `python` interpreter inside the virtual environment:
+```sh
+git switch stable  # switch to the stable branch
+
+make publish!  # publish to PyPi
+
+git switch {{ cookiecutter.git_main_branch }}  # return to the main branch
+```
+
+The `make publish!` command will build your package, ask you for your PyPi credentials and push it to PyPi. Now, head over to PyPi and create an API token that has `Project: {{ cookiecutter.project_name|lower|replace('-', '_')|replace(' ', '_') }}` as its scope. This API token allows anyone who has it to update the package. Finally, add it as a GitHub Secret to a `PYPI_API_TOKEN` named secret. This will allow GitHub to make _automagic releases_ to PyPi.
+
+Now that you've created you're project, uploaded it to GitHub and PyPi and added a PyPi API token, let's move out attention to your local machine. Notice that there is a `.venv` folder on the root of the repository. This corresponds to the virtualenv that has your project's dependencies. To use the virtualenv, you can prepend every command with `poetry run`. Poetry will make sure to use the `python` interpreter inside the virtual environment:
 
 ```sh
 poetry run python some_file.py

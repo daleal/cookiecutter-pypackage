@@ -60,6 +60,8 @@ def execute_git_initialization():
     try:
         initialize_git_repository()
         initial_git_commit()
+        rename_git_branch()
+        create_git_stable_branch()
         print("✔ git initialization complete")
     except subprocess.CalledProcessError:
         print("❌ The git repository could not be correctly initialized.")
@@ -72,6 +74,14 @@ def initialize_git_repository():
 def initial_git_commit():
     subprocess.check_call(["git", "add", "."])
     subprocess.check_call(["git", "commit", "-m", "'Initial commit'"])
+
+
+def rename_git_branch():
+    subprocess.check_call(["git", "branch", "-M", "{{ cookiecutter.git_main_branch }}"])
+
+
+def create_git_stable_branch():
+    subprocess.check_call(["git", "branch", "stable"])
 
 
 if __name__ == "__main__":
