@@ -13,7 +13,9 @@ exclude = [
     ".github",
     ".flake8",
     ".pylintrc",
+{%- if cookiecutter.include_type_checking == "yes" %}
     "mypy.ini",
+{%- endif %}
     ".coveragerc",
     "Makefile",
     "scripts",
@@ -24,14 +26,14 @@ exclude = [
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.dev-dependencies]
-black = "^20.8b1"
-flake8 = "^3.8.4"
-isort = "^5.6.4"
-pylint = "^2.6.0"
-pytest = "^6.1.1"
-pytest-cov = "^2.10.1"
+black = "^21.11b1"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+pylint = "^2.12.2"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
 {% if cookiecutter.include_type_checking == "yes" -%}
-mypy = "^0.790"
+mypy = "^0.910"
 {%- endif %}
 
 {% if cookiecutter.include_cli == "yes" -%}
